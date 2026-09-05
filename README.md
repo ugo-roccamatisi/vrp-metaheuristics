@@ -13,16 +13,21 @@ The NP-hard vehicle routing problem (VRP), attacked three ways and benchmarked f
 
 ## Repository layout
 
-| Folder | Role |
-|---|---|
-| `scheduling/` | The VRPTW model, base scheduler, and the algorithms: tabu search, simulated annealing (recuit), genetic algorithm (ag), naive baseline |
-| `sma/` | The Top-N multi-agent system: agents, blackboard, coordinator |
-| `optimization/` | Optuna hyper-parameter search |
-| `environment/` | Instance generation and environment model |
-| `metrics/`, `verification/` | Cost metrics and step-by-step solution verification |
-| `visualization/` | The Streamlit application |
+```text
+.
+├── scheduling/        # VRPTW model, base scheduler and the algorithms
+│   └── algorithms/    # tabu search, recuit (SA), ag (GA), naive baseline
+├── sma/               # Top-N multi-agent system: agents, blackboard, coordinator
+├── optimization/      # Optuna hyper-parameter search
+├── environment/       # Instance generation and environment model
+├── metrics/           # Cost metrics
+├── verification/      # Step-by-step solution verification
+├── visualization/     # The Streamlit application
+├── report/            # Project report (French)
+└── docs/              # Figures
+```
 
-The tabular Q-Learning extension (2-opt operators, chained after simulated annealing) is documented in the project report, available on my [portfolio](https://ugo-roccamatisi.github.io).
+The tabular Q-Learning extension (2-opt operators, chained after simulated annealing) is documented in the [project report](report/rapport-ICO.pdf) (French).
 
 ## Run it
 
