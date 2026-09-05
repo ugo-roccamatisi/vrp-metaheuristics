@@ -1,4 +1,8 @@
-numpy
-matplotlib
-optuna
-streamlit
+pydantic==2.10.6
+networkx==3.1 
+scipy==1.8.1
+plotly==6.0.0
+numpy==1.26.4
+pandas==1.5.3
+optuna==3.5.0
+streamlit==1.32.2
