@@ -11,19 +11,36 @@ The NP-hard vehicle routing problem (VRP), attacked three ways and benchmarked f
 - **Winning strategy: simulated annealing then tabular Q-Learning (2-opt), about 13% better than the best standalone metaheuristic** on the 100-client instance (9,906 vs 11,493).
 - Interactive Streamlit demo: live Q-Learning training, step-by-step solution verification, route maps.
 
+## Repository layout
+
+| Folder | Role |
+|---|---|
+| `scheduling/` | The VRPTW model, base scheduler, and the algorithms: tabu search, simulated annealing (recuit), genetic algorithm (ag), naive baseline |
+| `sma/` | The Top-N multi-agent system: agents, blackboard, coordinator |
+| `optimization/` | Optuna hyper-parameter search |
+| `environment/` | Instance generation and environment model |
+| `metrics/`, `verification/` | Cost metrics and step-by-step solution verification |
+| `visualization/` | The Streamlit application |
+
+The tabular Q-Learning extension (2-opt operators, chained after simulated annealing) is documented in the project report, available on my [portfolio](https://ugo-roccamatisi.github.io).
+
+## Run it
+
+```bash
+conda create -n vrptw_env python=3.9.8
+conda activate vrptw_env
+pip install -r requirements.txt
+cd visualization
+streamlit run streamlit_app.py
+```
+
+## Team
+
+Group project at Centrale Lille with Lylia Sadoun, Bilal Miali, Adrien Benaroch, Baptiste Neuveux and Guillaume Darlot.
+
 ## Gallery
 
 | | |
 |---|---|
 | ![Multi-agent convergence](docs/vrp-benchmark.png) | ![Live Q-Learning training](docs/vrp-qlearning.png) |
 
-## Report
-
-The full report (French) is available on my [portfolio](https://ugo-roccamatisi.github.io).
-
-## Run it
-
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
