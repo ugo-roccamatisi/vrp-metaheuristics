@@ -120,6 +120,10 @@ class Scheduler(BaseScheduler):
 
     def neighborhood(self, solution: VRPTWSolution) -> list:
         neighbors = []
+        if len(solution.routes) < 2:
+            # Inter-route swap impossible with a single route: no neighbors,
+            # run() then stops cleanly on its own guard.
+            return neighbors
         for _ in range(self.hyperparams.neighborhood_size):
             neighbor = deepcopy(solution)
             route1, route2 = random.sample(neighbor.routes, 2)
