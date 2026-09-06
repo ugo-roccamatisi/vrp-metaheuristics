@@ -2,6 +2,8 @@
 
 The NP-hard vehicle routing problem (VRP), attacked three ways and benchmarked fairly: classic metaheuristics (tabu search, simulated annealing, genetic algorithm), a Top-N loop multi-agent system, and tabular Q-Learning with 2-opt operators. Group project (6 students), Collaborative Intelligence elective at Centrale Lille.
 
+**[Try it live](https://vrp-metaheuristics.streamlit.app)**: the Streamlit demo lets you generate instances, run and compare the algorithms, watch the Q-Learning agent train, and inspect every solution step by step.
+
 ![Routes optimized by tabu search](docs/vrp-routes.png)
 
 ## Highlights
@@ -42,12 +44,11 @@ The tabular Q-Learning extension (2-opt operators, chained after simulated annea
 ## Run it
 
 ```bash
-conda create -n vrptw_env python=3.9.8
-conda activate vrptw_env
 pip install -r requirements.txt
-cd visualization
-streamlit run streamlit_app.py
+streamlit run visualization/streamlit_app.py
 ```
+
+Or use the hosted demo directly: [vrp-metaheuristics.streamlit.app](https://vrp-metaheuristics.streamlit.app).
 
 ## Team
 
