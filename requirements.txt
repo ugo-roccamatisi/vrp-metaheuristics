@@ -6,3 +6,5 @@ pydantic
 numpy
 pandas
 scipy
+matplotlib
+scikit-learn
