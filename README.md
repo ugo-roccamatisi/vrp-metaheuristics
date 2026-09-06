@@ -15,16 +15,26 @@ The NP-hard vehicle routing problem (VRP), attacked three ways and benchmarked f
 
 ```text
 .
-├── scheduling/        # VRPTW model, base scheduler and the algorithms
-│   └── algorithms/    # tabu search, recuit (SA), ag (GA), naive baseline
-├── sma/               # Top-N multi-agent system: agents, blackboard, coordinator
-├── optimization/      # Optuna hyper-parameter search
-├── environment/       # Instance generation and environment model
-├── metrics/           # Cost metrics
-├── verification/      # Step-by-step solution verification
-├── visualization/     # The Streamlit application
-├── report/            # Project report (French)
-└── docs/              # Figures
+├── scheduling/
+│   ├── vrptw_model.py             # The VRPTW model (clients, vehicles, time windows, costs)
+│   ├── base_scheduler.py          # Common interface all algorithms implement
+│   └── algorithms/
+│       ├── tabu/                  # Tabu search (scheduler, hyper_params, list_rules)
+│       ├── recuit/                # Simulated annealing (scheduler, hyper_params)
+│       ├── ag/                    # Genetic algorithm (scheduler, hyper_params)
+│       └── naive_scheduler/       # Naive baseline (scheduler, hyper_params)
+├── sma/
+│   ├── run_agents.py              # Entry point of the multi-agent system
+│   ├── alg_agent.py               # One agent wrapping one algorithm
+│   ├── blackboard.py              # Shared solution pool
+│   └── coordinator.py             # Top-N loop coordination
+├── optimization/optimizer.py      # Optuna hyper-parameter search
+├── environment/                   # Instance generation and environment model
+├── metrics/metrics.py             # Cost metrics
+├── verification/verify.py         # Step-by-step solution verification
+├── visualization/streamlit_app.py # The Streamlit application
+├── report/rapport-ICO.pdf         # Project report (French)
+└── docs/                          # Figures
 ```
 
 The tabular Q-Learning extension (2-opt operators, chained after simulated annealing) is documented in the [project report](report/rapport-ICO.pdf) (French).
