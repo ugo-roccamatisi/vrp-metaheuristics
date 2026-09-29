@@ -1,4 +1,4 @@
-# scheduling/algorithms/sa_scheduler/scheduler.py
+# Simulated annealing scheduler
 
 import numpy as np
 from copy import deepcopy
@@ -7,7 +7,7 @@ from environment.environment import VRPTWEnvironment
 from scheduling.base_scheduler import BaseScheduler
 from scheduling.vrptw_model import VRPTWSolution, Route
 
-# On importe la fonction de calcul de coût déjà existante
+# Reuse the existing cost function
 from metrics.metrics import compute_solution_cost
 
 class Scheduler(BaseScheduler):
@@ -20,8 +20,8 @@ class Scheduler(BaseScheduler):
 
     def _generate_initial_solution(self, env: VRPTWEnvironment) -> VRPTWSolution:
         """
-        Crée une unique route qui contient tous les clients dans l'ordre.
-        (Le dépôt 0 n’est pas inclus ici comme 'client'.)
+        Build a single route containing all the clients in order.
+        (Depot 0 is not included here as a 'client'.)
         """
         customers_ids = [c.id for c in env.customers]
         route = Route(vehicle_id=0, sequence_of_customers=customers_ids)
@@ -29,7 +29,7 @@ class Scheduler(BaseScheduler):
 
     def _generate_neighbor(self, solution: VRPTWSolution, env: VRPTWEnvironment) -> VRPTWSolution:
         """
-        Échange aléatoirement deux clients dans la liste unique de la solution.
+        Randomly swap two clients in the single list of the solution.
         """
         new_solution = deepcopy(solution)
         seq = new_solution.routes[0].sequence_of_customers
@@ -43,8 +43,8 @@ class Scheduler(BaseScheduler):
 
     def _build_routes(self, seq_of_customers, env: VRPTWEnvironment) -> VRPTWSolution:
         """
-        À partir d’une séquence linéaire de clients, construit plusieurs routes 
-        en respectant la capacité du véhicule.
+        From a linear sequence of clients, build several routes
+        that respect the vehicle capacity.
         """
         routes = []
         current_route = []
@@ -67,19 +67,19 @@ class Scheduler(BaseScheduler):
 
     def _compute_cost(self, solution: VRPTWSolution, env: VRPTWEnvironment) -> float:
         """
-        Construit les routes effectives (selon la capacité) 
-        puis utilise la fonction officielle de calcul de coût.
+        Build the actual routes (according to capacity),
+        then use the official cost function.
         """
         seq = solution.routes[0].sequence_of_customers
-        # On segmente la séquence unique en routes multiples
+        # Split the single sequence into multiple routes
         multi_route_solution = self._build_routes(seq, env)
-        # On calcule le coût avec la fonction existante (w=1000 par défaut)
+        # Compute the cost with the existing function (w=1000 by default)
         return compute_solution_cost(env, multi_route_solution)
 
     def run(self, env: VRPTWEnvironment) -> VRPTWSolution:
         """
-        Exécute le recuit simulé (Simulated Annealing) 
-        et renvoie la meilleure solution (multi-route).
+        Run simulated annealing
+        and return the best (multi-route) solution.
         """
         solution = self._generate_initial_solution(env)
         best_solution = deepcopy(solution)
@@ -94,7 +94,7 @@ class Scheduler(BaseScheduler):
                 new_cost = self._compute_cost(new_solution, env)
                 delta = new_cost - best_cost
 
-                # Critère Metropolis
+                # Metropolis criterion
                 if delta < 0 or np.random.rand() < np.exp(-delta / current_temperature):
                     solution = new_solution
                     if new_cost < best_cost:
@@ -104,6 +104,6 @@ class Scheduler(BaseScheduler):
             current_temperature *= self.alpha
             iteration += 1
 
-        # On reconstruit les routes finales pour retourner la solution multi-route
+        # Rebuild the final routes to return the multi-route solution
         final_seq = best_solution.routes[0].sequence_of_customers
         return self._build_routes(final_seq, env)

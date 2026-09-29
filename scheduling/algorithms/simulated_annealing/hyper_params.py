@@ -1,4 +1,4 @@
-# Exemple de fichier : scheduling/algorithms/sa_scheduler/hyper_params.py
+# Hyper-parameters of the simulated annealing scheduler
 
 from pydantic import BaseModel
 

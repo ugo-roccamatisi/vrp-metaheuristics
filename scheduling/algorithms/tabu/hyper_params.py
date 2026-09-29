@@ -1,4 +1,4 @@
-# scheduling/algorithms/tabu_scheduler/hyper_params.py
+# Hyper-parameters of the tabu search scheduler
 
 from pydantic import BaseModel
 from typing import Literal

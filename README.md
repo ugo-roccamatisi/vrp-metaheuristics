@@ -20,10 +20,10 @@ The NP-hard vehicle routing problem (VRP), attacked three ways and benchmarked f
 │   ├── base_scheduler.py          # Common interface all algorithms implement
 │   └── algorithms/
 │       ├── tabu/                  # Tabu search (scheduler, hyper_params, list_rules)
-│       ├── recuit/                # Simulated annealing (scheduler, hyper_params)
-│       ├── ag/                    # Genetic algorithm (scheduler, hyper_params)
+│       ├── simulated_annealing/   # Simulated annealing (scheduler, hyper_params)
+│       ├── genetic/               # Genetic algorithm (scheduler, hyper_params)
 │       └── naive_scheduler/       # Naive baseline (scheduler, hyper_params)
-├── sma/
+├── multi_agent/
 │   ├── run_agents.py              # Entry point of the multi-agent system
 │   ├── alg_agent.py               # One agent wrapping one algorithm
 │   ├── blackboard.py              # Shared solution pool

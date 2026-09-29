@@ -1,4 +1,4 @@
-# scheduling/algorithms/genetic_scheduler/scheduler.py
+# Genetic algorithm scheduler
 
 import random
 import math
