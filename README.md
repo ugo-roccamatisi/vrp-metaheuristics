@@ -24,7 +24,6 @@ The NP-hard vehicle routing problem (VRP), attacked three ways and benchmarked f
 │       ├── genetic/               # Genetic algorithm (scheduler, hyper_params)
 │       └── naive_scheduler/       # Naive baseline (scheduler, hyper_params)
 ├── multi_agent/
-│   ├── run_agents.py              # Entry point of the multi-agent system
 │   ├── alg_agent.py               # One agent wrapping one algorithm
 │   ├── blackboard.py              # Shared solution pool
 │   └── coordinator.py             # Top-N loop coordination
